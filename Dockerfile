@@ -12,7 +12,9 @@ RUN dnf -y install texlive \
                    texlive-tapir \
                    texlive-thmtools \
                    texlive-sansmathaccent \
-                   texlive-sectsty
+                   texlive-sectsty && \
+                   dnf clean all
+
 RUN dnf -y update && \
     dnf clean all
 RUN mkdir /workspace
