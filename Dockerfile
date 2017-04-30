@@ -20,5 +20,5 @@ RUN dnf -y update && \
 RUN mkdir /workspace
 WORKDIR /workspace
 VOLUME /workspace
-ENTRYPOINT ["pdflatex"]
+ENTRYPOINT ["pdflatex","-halt-on-error","-interaction=nonstopmode"]
 CMD ["*.tex"]
