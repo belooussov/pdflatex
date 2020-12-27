@@ -1,6 +1,8 @@
-FROM fedora:25
+FROM fedora:33
 MAINTAINER belooussov@gmail.com
-RUN dnf -y install texlive \
+RUN mkdir /workspace && \
+    dnf -y update && \
+    dnf -y install texlive \
                    texlive-latex \
                    texlive-arev \
                    texlive-export \
@@ -13,12 +15,8 @@ RUN dnf -y install texlive \
                    texlive-thmtools \
                    texlive-sansmathaccent \
                    texlive-sectsty && \
-                   dnf clean all
-
-RUN dnf -y update && \
     dnf clean all
-RUN mkdir /workspace
 WORKDIR /workspace
 VOLUME /workspace
-ENTRYPOINT ["pdflatex","-halt-on-error","-interaction=nonstopmode"]
+ENTRYPOINT ["/usr/bin/pdflatex","-halt-on-error","-interaction=nonstopmode"]
 CMD ["*.tex"]
